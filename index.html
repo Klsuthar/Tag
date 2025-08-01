@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Video Tagging Tool</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 768px)">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1><i class="fas fa-video accent-icon"></i> Video Tagging Tool</h1>
+            <div class="app-tabs">
+                <button class="tab-btn active" data-tab="tagger">Tagger</button>
+                <button class="tab-btn" data-tab="history">History</button>
+            </div>
+            <div class="header-actions">
+                <button id="save-session-btn" class="btn btn-secondary" disabled><i class="fas fa-save"></i> Save Session</button>
+                <button id="export-json-btn" class="btn btn-primary" disabled><i class="fas fa-file-export"></i> Export JSON</button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div id="tagger-panel" class="app-panel active">
+                <div class="video-panel">
+                    <div id="video-placeholder" class="video-placeholder">
+                        <i class="fas fa-photo-video"></i>
+                        <p>Load a video to begin</p>
+                        <button id="load-video-btn" class="btn btn-primary"><i class="fas fa-folder-open"></i> Load Video</button>
+                        <input type="file" id="video-input" accept="video/*" class="hidden">
+                    </div>
+                    <div id="video-wrapper" class="video-wrapper hidden">
+                        <video id="main-video"></video>
+                        <div class="video-controls-wrapper">
+                            <div class="timeline-container"><input type="range" id="timeline" class="timeline" value="0" step="0.01"></div>
+                            <div class="controls-row">
+                                <div class="controls-left">
+                                    <button id="frame-backward-btn" class="control-btn" title="Frame Backward (←)"><i class="fas fa-backward-step"></i></button>
+                                    <button id="play-pause-btn" class="control-btn play-btn" title="Play/Pause (Space)"><i class="fas fa-play"></i></button>
+                                    <button id="frame-forward-btn" class="control-btn" title="Frame Forward (→)"><i class="fas fa-forward-step"></i></button>
+                                    <div class="time-display"><span id="current-time">00:00</span> / <span id="total-time">00:00</span></div>
+                                </div>
+                                <div class="controls-right">
+                                    <div class="speed-control"><i class="fas fa-gauge-high"></i><select id="speed-select"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="1.5">1.5x</option><option value="2">2x</option></select></div>
+                                    <div class="volume-control"><button id="mute-btn" class="control-btn"><i class="fas fa-volume-high"></i></button><input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.01" value="1"></div>
+                                    <button id="fullscreen-btn" class="control-btn" title="Fullscreen"><i class="fas fa-expand"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tagging-panel">
+                    <details class="collapsible-section" open>
+                        <summary>
+                            <legend>
+                                <i class="fas fa-clipboard-list"></i> Session Details
+                                <i class="fas fa-chevron-down expand-icon"></i>
+                            </legend>
+                        </summary>
+                        <div class="details-content">
+                            <div class="form-group">
+                                <label for="video-location-input">Location</label>
+                                <input type="text" id="video-location-input" placeholder="e.g., Farm, Home, Office">
+                            </div>
+                            <div class="form-group">
+                                <label for="video-general-description">General Description</label>
+                                <textarea id="video-general-description" rows="3" placeholder="Describe the overall video here..."></textarea>
+                            </div>
+                        </div>
+                    </details>
+                    
+                    <fieldset>
+                        <legend id="tags-legend">
+                            <i class="fas fa-tags"></i> Tags (0)
+                        </legend>
+                        <div class="tags-header">
+                            <button id="add-tag-btn" class="btn btn-primary btn-sm" title="New Tag (N)" disabled>
+                                <i class="fas fa-plus"></i> New Tag
+                            </button>
+                        </div>
+                        <div id="tags-list" class="tags-list">
+                            <p class="no-data-message">No tags added yet.</p>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div id="history-panel" class="app-panel">
+                <div class="history-header">
+                    <h2><i class="fas fa-history accent-icon"></i> Saved Sessions</h2>
+                    <button id="import-json-btn" class="btn btn-secondary"><i class="fas fa-file-import"></i> Import From File</button>
+                    <input type="file" id="json-input" accept=".json" class="hidden" multiple>
+                </div>
+                <div id="history-list" class="history-list"></div>
+            </div>
+        </main>
+    </div>
+    <div id="toast-container"></div>
+    <script src="script.js"></script>
+</body>
+</html>

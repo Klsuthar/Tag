@@ -1,0 +1,124 @@
+body {
+    overflow: auto; /* Allow scrolling on mobile */
+}
+
+/* General Responsive Adjustments */
+.app-container {
+    padding: 10px;
+    height: auto; /* Adjust height for content */
+    min-height: 100vh; /* Ensure it takes at least the full viewport height */
+}
+
+.app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+    position: static; /* Override absolute positioning of children */
+}
+
+.app-header h1 {
+    font-size: 1.2em; /* Adjust font size */
+    margin-bottom: 15px;
+}
+
+/* Move tabs to be under the title */
+.app-tabs {
+    position: static;
+    transform: none;
+    order: 1;
+    width: 100%;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.header-actions {
+    order: 2;
+    width: 100%;
+    justify-content: space-around; /* Space out buttons */
+}
+
+.header-actions .btn {
+    flex-grow: 1; /* Make buttons take equal space */
+}
+
+
+/* Main content layout */
+#tagger-panel {
+    flex-direction: column;
+}
+
+.video-panel, .tagging-panel {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    border-left: none; /* Remove side border */
+}
+
+.tagging-panel {
+    margin-top: 20px;
+    border-top: 1px solid var(--tertiary-bg); /* Add top border */
+    flex: 1; /* Allow tagging panel to grow */
+}
+
+
+/* Video Controls */
+.video-controls-wrapper {
+    padding: 10px;
+}
+
+.controls-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.controls-left, .controls-right {
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.time-display {
+    font-size: 0.8rem;
+}
+
+.control-btn {
+    font-size: 1rem;
+}
+.play-btn {
+    font-size: 1.5rem;
+}
+
+
+/* Tagging Panel Adjustments */
+.tagging-panel fieldset, .collapsible-section {
+    margin: 10px; /* Reduce margin */
+}
+
+.tags-header {
+    margin-bottom: 10px;
+}
+
+
+/* History Panel */
+.history-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px;
+}
+
+.history-list {
+    padding: 10px;
+}
+
+.history-item-main {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.history-item-actions {
+    margin-top: 10px;
+    width: 100%;
+    justify-content: space-between;
+}
